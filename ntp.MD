@@ -1,11 +1,41 @@
 # NTP operation
-## ubuntu 14.04
+## ubuntu 14.04 [refer](https://askubuntu.com/questions/929805/timedatectl-ntp-sync-cannot-set-to-yes)
 
-* service start/stop
+* query timedate status
   ```bash
-  sudo service ntp stop
-  sudo ntpd -gq ← here you can see it's getting sync
-  sudo service ntp start
+  $ timedatectl
+         Local time: Fri 2018-10-12 01:26:37 PDT
+    Universal time: Fri 2018-10-12 08:26:37 UTC
+          Timezone: Asia/Hong_Kong (PDT, -0700)
+       NTP enabled: yes
+   NTP synchronized: yes
+   RTC in local TZ: no
+        DST active: yes
+   Last DST change: DST began at
+                    Sun 2018-03-11 01:59:59 PST
+                    Sun 2018-03-11 03:00:00 PDT
+   Next DST change: DST ends (the clock jumps one hour backwards) at
+                    Sun 2018-11-04 01:59:59 PDT
+                    Sun 2018-11-04 01:00:00 PST
+  ```
+* query directly by ntpdate
+
+  ```bash
+  $ sudo service ntp stop
+  $ sudo ntpdate -v ntp-server-address
+  12 Oct 01:29:56 ntpdate[31083]: ntpdate 4.2.6p5@1.2349-o Wed Oct  5 12:35:26 UTC 2016 (1)
+  12 Oct 01:30:03 ntpdate[31083]: adjust time server 171.68.38.65 offset -0.043101 sec
+  $sudo service ntp start
+  ```
+  
+* add ntp server
+
+  ```bash
+  $ sudo service stop ntp
+  $ sudo vi /etc/ntp.conf
+  # add like "server 0.ubuntu.pool.ntp.org
+  $ sudo service stop ntp
+  $ grep ntpd /var/log/syslog 
   ```
   
 * fix apt install issue
