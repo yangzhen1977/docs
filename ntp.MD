@@ -43,20 +43,21 @@
 
      You will see this in the terminal:
 
-        ```
-        net.ipv6.conf.all.disable_ipv6 = 1
-        net.ipv6.conf.default.disable_ipv6 = 1
-        net.ipv6.conf.lo.disable_ipv6 = 1
-        ```
+      ```
+      net.ipv6.conf.all.disable_ipv6 = 1
+      net.ipv6.conf.default.disable_ipv6 = 1
+      net.ipv6.conf.lo.disable_ipv6 = 1
+      ```
+      
       After that, if you run:
 
-        ```bash
-        $ cat /proc/sys/net/ipv6/conf/all/disable_ipv6
-        ```
+      ```bash
+      $ cat /proc/sys/net/ipv6/conf/all/disable_ipv6
+      ```
 
       It will report:
 
-        ```
-        1
-        ```
+      ```
+      1
+      ```
       If you see 1, ipv6 has been successfully disabled.
