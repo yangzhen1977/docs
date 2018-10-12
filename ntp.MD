@@ -30,11 +30,24 @@
   
 * add ntp server
 
+  * disabled unused ntp server
+  
+  ```
+    #server 0.ubuntu.pool.ntp.org
+    #server 1.ubuntu.pool.ntp.org
+    #server 2.ubuntu.pool.ntp.org
+    #server 3.ubuntu.pool.ntp.org
+  ```
+
   ```bash
   $ sudo service stop ntp
   $ sudo vi /etc/ntp.conf
-  # add like "server 0.ubuntu.pool.ntp.org
-  $ sudo service stop ntp
+  # add like "server my-ntp-server"
+  $ sudo service start ntp
+  # query current server used
+  $ ntpq -pn
+  $ ping my-ntp-server
+  
   $ grep ntpd /var/log/syslog 
   ```
   
