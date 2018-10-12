@@ -32,24 +32,44 @@
 
   * disabled unused ntp server
   
-  ```
+    ```
     #server 0.ubuntu.pool.ntp.org
     #server 1.ubuntu.pool.ntp.org
     #server 2.ubuntu.pool.ntp.org
     #server 3.ubuntu.pool.ntp.org
-  ```
+    ```
 
-  ```bash
-  $ sudo service stop ntp
-  $ sudo vi /etc/ntp.conf
-  # add like "server my-ntp-server"
-  $ sudo service start ntp
-  # query current server used
-  $ ntpq -pn
-  $ ping my-ntp-server
+    ```bash
+    $ sudo service stop ntp
+    $ sudo vi /etc/ntp.conf
+    # add like "server my-ntp-server"
+    $ sudo service start ntp
+    # query current server used
+    $ ntpq -pn
+    $ ping my-ntp-server
+
+    $ grep ntpd /var/log/syslog 
+    ```
   
-  $ grep ntpd /var/log/syslog 
-  ```
+  * query from ntpd status
+  
+    ```
+    $ ntpdc -c sysinfo
+    system peer:          xxxx
+    system peer mode:     client
+    leap indicator:       00
+    stratum:              2
+    precision:            -22
+    root distance:        0.15753 s
+    root dispersion:      1.02357 s
+    reference ID:         [xxx.xxx.xx.xx]
+    reference time:       df6add60.88f88ed1  Fri, Oct 12 2018  1:44:16.535
+    system flags:         auth monitor ntp kernel stats
+    jitter:               0.000000 s
+    stability:            0.000 ppm
+    broadcastdelay:       0.000000 s
+    authdelay:            0.000000 s
+    ```
   
 * fix apt install issue
   
